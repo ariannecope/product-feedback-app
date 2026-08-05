@@ -250,9 +250,14 @@ Base path: `/api/suggestions`
 - Color must not be the only means of conveying the active filter state or validation error state (e.g. pair color with text/icon).
 - Sufficient color contrast should be maintained for text and interactive elements per WCAG AA guidance.
 
-### 6.3 Reference to Figma design
+### 6.3 Design Reference
 
-> A Figma design file is expected to accompany this PRD and should be treated as the source of truth for visual design, spacing, typography, and component styling. **Insert the Figma link here once available:** `[Figma design link — TBD]`. In its absence, the implementing engineer should follow the behavioral and structural requirements in this document and use reasonable, clean design defaults, prioritizing the accessibility and responsiveness requirements above over any specific visual styling.
+The provided product feedback application demo should be used as the visual reference for the frontend implementation, including layout, spacing, typography, components, and overall user experience.
+
+Design reference:
+https://product-feedback-app-2025.netlify.app/
+
+If additional Figma designs are provided, they should be treated as the source of truth for visual styling. Otherwise, implementation should follow the behavioral requirements in this PRD while maintaining clean, accessible, responsive design patterns.
 
 ---
 
