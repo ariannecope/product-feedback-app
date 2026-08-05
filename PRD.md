@@ -38,6 +38,8 @@ The frontend has exactly two pages for Milestone 1.
 
 ### 2.1 Home page (`/`)
 
+Frontend navigation should use React Router to manage the Home and AddFeedback pages.
+
 **Purpose:** Let users browse existing suggestions and filter them by category.
 
 **Behavior:**
@@ -63,7 +65,7 @@ The frontend has exactly two pages for Milestone 1.
 
 **Empty states:**
 
-- If there are zero suggestions overall (no data in the database yet), show a general empty state message, e.g. "No suggestions yet. Be the first to add one!" with a link/button to the AddFeedback page.
+- If there are zero suggestions overall (no data in the database yet), show a general empty state message, e.g. "No suggestions yet. Be the first to add one!" with a link/button to the AddFeedback page. The application does not require seeded feedback data. The empty state should be visible when the database contains no suggestions.
 - If a category filter is applied and no suggestions match that category, show a filter-specific empty state message, e.g. "No suggestions found in this category." The message must make clear this is due to the filter, not a system error, and should not be identical wording to the "no data at all" state.
 - Empty states replace the list area; they do not appear alongside skeleton/loading content.
 
@@ -113,7 +115,7 @@ The frontend has exactly two pages for Milestone 1.
 ---
 
 ## 3. Data Model
-
+The suggestions table should be created in the Neon PostgreSQL database using a SQL schema file or migration script.
 ### 3.1 `suggestions` table (PostgreSQL)
 
 | Field | Type | Constraints | Purpose |
@@ -131,6 +133,8 @@ The frontend has exactly two pages for Milestone 1.
 - `Bug`
 - `Performance`
 - `Other`
+
+Category values are case-sensitive and must be stored exactly as listed above.
 
 > These values should live in one shared place (e.g. a constants file or DB enum/check constraint) referenced by both the frontend filter/select options and backend validation, so the two never drift out of sync.
 
