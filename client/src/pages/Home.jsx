@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchSuggestions } from "../lib/api";
+import BrandBlock from "../components/BrandBlock";
 import CategoryFilter from "../components/CategoryFilter";
 import SuggestionCard from "../components/SuggestionCard";
+import EmptyState from "../components/EmptyState";
+import { PlusIcon, LightbulbIcon } from "../components/icons";
 import "./Home.css";
 
 function Home() {
@@ -30,37 +33,54 @@ function Home() {
     };
   }, [activeCategory]);
 
+  const addFeedbackButton = (
+    <Link to="/add" className="home__add-button">
+      <PlusIcon /> Add Feedback
+    </Link>
+  );
+
   return (
-    <main className="home">
-      <div className="home__header">
-        <h1>Product Feedback</h1>
-        <Link to="/add" className="home__add-link">
-          Add Suggestion
-        </Link>
+    <div className="home">
+      <BrandBlock />
+
+      <div className="home__toolbar">
+        <span className="home__count">
+          <LightbulbIcon />
+          {suggestions.length} Suggestions
+        </span>
+        {addFeedbackButton}
       </div>
 
-      <CategoryFilter activeCategory={activeCategory} onChange={setActiveCategory} />
+      <div className="home__filters">
+        <CategoryFilter activeCategory={activeCategory} onChange={setActiveCategory} />
+      </div>
 
-      <div className="home__list-area">
-        {status === "loading" && <p role="status">Loading suggestions…</p>}
+      <div className="home__panel">
+        {status === "loading" && (
+          <p className="home__status" role="status">
+            Loading suggestions…
+          </p>
+        )}
 
         {status === "error" && (
-          <p className="home__error" role="alert">
+          <p className="home__status home__status--error" role="alert">
             Something went wrong loading suggestions. Please try again.
           </p>
         )}
 
         {status === "success" && suggestions.length === 0 && activeCategory === "All" && (
-          <div className="home__empty">
-            <p>No suggestions yet. Be the first to add one!</p>
-            <Link to="/add" className="home__add-link">
-              Add Suggestion
-            </Link>
-          </div>
+          <EmptyState
+            heading="There is no feedback yet."
+            subtitle="Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app."
+            cta={addFeedbackButton}
+          />
         )}
 
         {status === "success" && suggestions.length === 0 && activeCategory !== "All" && (
-          <p className="home__empty">No suggestions found in this category.</p>
+          <EmptyState
+            heading="No suggestions found in this category."
+            subtitle="Try a different filter, or be the first to add feedback here."
+          />
         )}
 
         {status === "success" && suggestions.length > 0 && (
@@ -71,7 +91,7 @@ function Home() {
           </ul>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

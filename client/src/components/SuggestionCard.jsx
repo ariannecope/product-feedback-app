@@ -6,12 +6,12 @@ function SuggestionCard({ suggestion }) {
 
   return (
     <li className="suggestion-card">
-      <div className="suggestion-card__header">
-        <h3 className="suggestion-card__title">{title}</h3>
-        <span className="suggestion-card__category">{category}</span>
-      </div>
+      <h3 className="suggestion-card__title">{title}</h3>
       <p className="suggestion-card__description">{description}</p>
-      <span className="suggestion-card__date">{formatDate(created_at)}</span>
+      <div className="suggestion-card__footer">
+        <span className="suggestion-card__category">{category}</span>
+        <span className="suggestion-card__date">{formatDate(created_at)}</span>
+      </div>
     </li>
   );
 }

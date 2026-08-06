@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { addSuggestion } from "../lib/api";
 import { validateSuggestion } from "../utils/validateSuggestion";
 import { CATEGORIES } from "../constants/categories";
+import { PlusIcon, ChevronLeftIcon, ChevronDownIcon } from "../components/icons";
 import "./AddFeedback.css";
 
 const INITIAL_VALUES = { title: "", category: "", description: "" };
@@ -67,99 +68,110 @@ function AddFeedback() {
 
   return (
     <main className="add-feedback">
-      <div className="add-feedback__header">
-        <h1>Add Suggestion</h1>
-        <Link to="/" className="add-feedback__cancel-link">
-          Cancel
-        </Link>
+      <Link to="/" className="add-feedback__go-back">
+        <ChevronLeftIcon /> Go Back
+      </Link>
+
+      <div className="add-feedback__card">
+        <div className="add-feedback__badge">
+          <PlusIcon width="16" height="16" />
+        </div>
+
+        {isSuccess ? (
+          <p className="add-feedback__success" role="status">
+            Suggestion added! Taking you back to the list…
+          </p>
+        ) : (
+          <form className="add-feedback__form" onSubmit={handleSubmit} noValidate>
+            <h1 className="add-feedback__heading">Create New Feedback</h1>
+
+            {formError && (
+              <p className="add-feedback__form-error" role="alert">
+                {formError}
+              </p>
+            )}
+
+            <div className="add-feedback__field">
+              <label htmlFor="title">Feedback Title</label>
+              <p className="add-feedback__hint">Add a short, descriptive headline</p>
+              <input
+                id="title"
+                type="text"
+                value={values.title}
+                onChange={handleChange("title")}
+                aria-invalid={Boolean(errors.title)}
+                aria-describedby={errors.title ? "title-error" : undefined}
+                disabled={isSubmitting}
+              />
+              {errors.title && (
+                <p className="add-feedback__field-error" id="title-error" role="alert">
+                  {errors.title}
+                </p>
+              )}
+            </div>
+
+            <div className="add-feedback__field">
+              <label htmlFor="category">Category</label>
+              <p className="add-feedback__hint">Choose a category for your feedback</p>
+              <div className="add-feedback__select-wrap">
+                <select
+                  id="category"
+                  value={values.category}
+                  onChange={handleChange("category")}
+                  aria-invalid={Boolean(errors.category)}
+                  aria-describedby={errors.category ? "category-error" : undefined}
+                  disabled={isSubmitting}
+                >
+                  <option value="" disabled>
+                    Select a category
+                  </option>
+                  {CATEGORIES.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDownIcon className="add-feedback__select-icon" />
+              </div>
+              {errors.category && (
+                <p className="add-feedback__field-error" id="category-error" role="alert">
+                  {errors.category}
+                </p>
+              )}
+            </div>
+
+            <div className="add-feedback__field">
+              <label htmlFor="description">Feedback Detail</label>
+              <p className="add-feedback__hint">
+                Include any specific comments on what should be improved, added, etc.
+              </p>
+              <textarea
+                id="description"
+                rows={5}
+                value={values.description}
+                onChange={handleChange("description")}
+                aria-invalid={Boolean(errors.description)}
+                aria-describedby={errors.description ? "description-error" : undefined}
+                disabled={isSubmitting}
+              />
+              {errors.description && (
+                <p className="add-feedback__field-error" id="description-error" role="alert">
+                  {errors.description}
+                </p>
+              )}
+            </div>
+
+            <div className="add-feedback__actions">
+              <Link to="/" className="add-feedback__cancel">
+                Cancel
+              </Link>
+              <button type="submit" className="add-feedback__submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting…" : "Submit Feedback"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
-
-      {isSuccess && (
-        <p className="add-feedback__success" role="status">
-          Suggestion added! Taking you back to the list…
-        </p>
-      )}
-
-      {!isSuccess && (
-        <form className="add-feedback__form" onSubmit={handleSubmit} noValidate>
-          {formError && (
-            <p className="add-feedback__form-error" role="alert">
-              {formError}
-            </p>
-          )}
-
-          <div className="add-feedback__field">
-            <label htmlFor="title">Title</label>
-            <input
-              id="title"
-              type="text"
-              value={values.title}
-              onChange={handleChange("title")}
-              aria-invalid={Boolean(errors.title)}
-              aria-describedby={errors.title ? "title-error" : undefined}
-              disabled={isSubmitting}
-            />
-            {errors.title && (
-              <p className="add-feedback__field-error" id="title-error" role="alert">
-                {errors.title}
-              </p>
-            )}
-          </div>
-
-          <div className="add-feedback__field">
-            <label htmlFor="category">Category</label>
-            <select
-              id="category"
-              value={values.category}
-              onChange={handleChange("category")}
-              aria-invalid={Boolean(errors.category)}
-              aria-describedby={errors.category ? "category-error" : undefined}
-              disabled={isSubmitting}
-            >
-              <option value="" disabled>
-                Select a category
-              </option>
-              {CATEGORIES.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-            {errors.category && (
-              <p className="add-feedback__field-error" id="category-error" role="alert">
-                {errors.category}
-              </p>
-            )}
-          </div>
-
-          <div className="add-feedback__field">
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              rows={5}
-              value={values.description}
-              onChange={handleChange("description")}
-              aria-invalid={Boolean(errors.description)}
-              aria-describedby={errors.description ? "description-error" : undefined}
-              disabled={isSubmitting}
-            />
-            {errors.description && (
-              <p className="add-feedback__field-error" id="description-error" role="alert">
-                {errors.description}
-              </p>
-            )}
-          </div>
-
-          <div className="add-feedback__actions">
-            <Link to="/" className="add-feedback__back-link">
-              Back
-            </Link>
-            <button type="submit" className="add-feedback__submit" disabled={isSubmitting}>
-              {isSubmitting ? "Adding…" : "Add Suggestion"}
-            </button>
-          </div>
-        </form>
-      )}
     </main>
   );
 }

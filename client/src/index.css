@@ -2,9 +2,24 @@
   box-sizing: border-box;
 }
 
+/*
+ * Design tokens below are estimated by eye from Figma screenshots (no
+ * Figma connector access this session) — swap for exact tokens once
+ * available via Figma's Inspect panel.
+ */
+:root {
+  --color-navy: #2e2b52;
+  --color-accent: #a437dd;
+  --gradient-brand: linear-gradient(135deg, #6a5cf5, #c934d1);
+  --color-lavender-fill: #eef0fb;
+  --color-lavender-text: #5b5fef;
+  --color-page-bg: #f5f6fb;
+  --color-muted: #6b7280;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: #1a1a1a;
-  background-color: #fafafa;
+  background-color: var(--color-page-bg);
 }

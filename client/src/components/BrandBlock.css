@@ -1,0 +1,18 @@
+.brand-block {
+  background: var(--gradient-brand);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  color: #fff;
+}
+
+.brand-block__name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.brand-block__subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
