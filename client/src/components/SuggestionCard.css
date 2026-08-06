@@ -1,0 +1,44 @@
+.suggestion-card {
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.suggestion-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.suggestion-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.suggestion-card__category {
+  flex-shrink: 0;
+  background-color: #f0ebfd;
+  color: #5c3fd6;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.suggestion-card__description {
+  margin: 0;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.suggestion-card__date {
+  color: #767676;
+  font-size: 0.8rem;
+}

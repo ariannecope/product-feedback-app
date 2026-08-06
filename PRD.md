@@ -252,12 +252,13 @@ Base path: `/api/suggestions`
 
 ### 6.3 Design Reference
 
-The provided product feedback application demo should be used as the visual reference for the frontend implementation, including layout, spacing, typography, components, and overall user experience.
-
-Design reference:
+Live Reference:
 https://product-feedback-app-2025.netlify.app/
 
-If additional Figma designs are provided, they should be treated as the source of truth for visual styling. Otherwise, implementation should follow the behavioral requirements in this PRD while maintaining clean, accessible, responsive design patterns.
+Figma Design:
+https://www.figma.com/design/vxjX8SdBOt21DCD14mrBM9/Product-Feedback-App-Design?node-id=0-1&p=f
+
+The Figma design is the source of truth for the application's visual design, layout, spacing, typography, and component styling. The live reference demonstrates expected behavior and interactions. When implementing the application, follow the Figma design when available while meeting the functional and accessibility requirements described in this PRD.
 
 ---
 
