@@ -6,7 +6,7 @@ function SuggestionCard({ suggestion }) {
 
   return (
     <li className="suggestion-card">
-      <h3 className="suggestion-card__title">{title}</h3>
+      <h2 className="suggestion-card__title">{title}</h2>
       <p className="suggestion-card__description">{description}</p>
       <div className="suggestion-card__footer">
         <span className="suggestion-card__category">{category}</span>

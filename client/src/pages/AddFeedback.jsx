@@ -8,6 +8,20 @@ import "./AddFeedback.css";
 
 const INITIAL_VALUES = { title: "", category: "", description: "" };
 
+const FIELD_LABELS = { title: "Title", category: "Category", description: "Description" };
+
+function describeInvalidFields(fieldErrors) {
+  const labels = Object.keys(fieldErrors).map((field) => FIELD_LABELS[field] ?? field);
+  const fieldList =
+    labels.length <= 1
+      ? labels.join("")
+      : labels.length === 2
+        ? `${labels[0]} and ${labels[1]}`
+        : `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
+
+  return `Almost there — just fix ${fieldList} before submitting.`;
+}
+
 function AddFeedback() {
   const navigate = useNavigate();
   const [values, setValues] = useState(INITIAL_VALUES);
@@ -40,7 +54,7 @@ function AddFeedback() {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setFormError("Please fix the errors below and try again.");
+      setFormError(describeInvalidFields(validationErrors));
       return;
     }
 
@@ -56,7 +70,7 @@ function AddFeedback() {
         setStatus("idle");
         if (err.fieldErrors) {
           setErrors(err.fieldErrors);
-          setFormError("Please fix the errors below and try again.");
+          setFormError(describeInvalidFields(err.fieldErrors));
         } else {
           setFormError("Something went wrong creating the suggestion. Please try again.");
         }

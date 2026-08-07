@@ -40,7 +40,9 @@ function Home() {
   );
 
   return (
-    <div className="home">
+    <main className="home">
+      <h1 className="visually-hidden">Product Feedback Suggestions</h1>
+
       <BrandBlock />
 
       <div className="home__toolbar">
@@ -91,7 +93,7 @@ function Home() {
           </ul>
         )}
       </div>
-    </div>
+    </main>
   );
 }
 
