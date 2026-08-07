@@ -8,7 +8,7 @@ const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 
 const app = express();
 
-app.use(cors({ origin: CLIENT_ORIGIN }));
+app.use(cors({ origin: CLIENT_ORIGIN, methods: ["GET", "POST"] }));
 app.use(express.json());
 
 app.get("/api/health", (req, res) => {

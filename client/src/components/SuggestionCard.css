@@ -42,6 +42,8 @@
 }
 
 .suggestion-card__date {
-  color: #9a9dc4;
+  /* was #9a9dc4 — only a 2.62:1 contrast ratio against white, well below
+     WCAG AA's 4.5:1 minimum */
+  color: var(--color-muted);
   font-size: 0.8rem;
 }

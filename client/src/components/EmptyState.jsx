@@ -16,7 +16,7 @@ function EmptyState({ heading, subtitle, cta }) {
   return (
     <div className="empty-state">
       <PlaceholderIllustration />
-      <p className="empty-state__heading">{heading}</p>
+      <h2 className="empty-state__heading">{heading}</h2>
       {subtitle && <p className="empty-state__subtitle">{subtitle}</p>}
       {cta && <div className="empty-state__cta">{cta}</div>}
     </div>

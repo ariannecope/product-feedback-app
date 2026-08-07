@@ -12,7 +12,10 @@
   --color-accent: #a437dd;
   --gradient-brand: linear-gradient(135deg, #6a5cf5, #c934d1);
   --color-lavender-fill: #eef0fb;
-  --color-lavender-text: #5b5fef;
+  /* Darkened from the screenshot-estimated #5b5fef — that value only hit a
+     4.27:1 contrast ratio against --color-lavender-fill, below WCAG AA's
+     4.5:1 minimum for normal text. */
+  --color-lavender-text: #4e53ee;
   --color-page-bg: #f5f6fb;
   --color-muted: #6b7280;
 }
@@ -22,4 +25,16 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: #1a1a1a;
   background-color: var(--color-page-bg);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

@@ -6,6 +6,11 @@ node_modules/
 .env.local
 .env.*.local
 
+# Secrets/credentials
+*.pem
+*.key
+credentials.json
+
 # Build output
 dist/
 build/
